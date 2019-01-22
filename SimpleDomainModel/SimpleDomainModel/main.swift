@@ -166,7 +166,16 @@ open class Person {
   }
   
   open func toString() -> String {
-    return "[Person: firstName: \(self.firstName) lastName: \(self.lastName) age: \(self.age) job: \(self.job?.type) spouse: \(self.spouse?.firstName)]"
+    var jobString : String = "none"
+    if self.job != nil {
+        jobString = "\(self.job?.type)"
+    }
+    var spouseString : String = "none"
+    if self.spouse != nil {
+        spouseString = "\(self.spouse?.firstName)"
+    }
+    
+    return "[Person: firstName: \(self.firstName) lastName: \(self.lastName) age: \(self.age) job: \(jobString) spouse: \(spouseString)]"
   }
 }
 
