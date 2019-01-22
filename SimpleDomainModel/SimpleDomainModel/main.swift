@@ -188,12 +188,35 @@ open class Family {
   fileprivate var members : [Person] = []
   
   public init(spouse1: Person, spouse2: Person) {
+    if (spouse1.spouse == nil && spouse2.spouse == nil) {
+        spouse1.spouse = spouse2
+        spouse2.spouse = spouse1
+        members.append(spouse1)
+        members.append(spouse2)
+    }
   }
   
   open func haveChild(_ child: Person) -> Bool {
+    var oldEnough : Bool = false
+    for member in members {
+        if (member.age > 21) {
+            oldEnough = true
+        }
+    }
+    if oldEnough {
+        members.append(child)
+        return true
+    } else {
+        return false
+    }
   }
   
   open func householdIncome() -> Int {
+    var total : Int = 0
+    for member in members {
+        
+    }
+    return total
   }
 }
 
