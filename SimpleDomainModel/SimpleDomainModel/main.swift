@@ -114,12 +114,16 @@ open class Job {
   }
   
   public init(title : String, type : JobType) {
+    self.title = title
+    self.type = type
   }
   
   open func calculateIncome(_ hours: Int) -> Int {
+    
   }
   
   open func raise(_ amt : Double) {
+    
   }
 }
 
