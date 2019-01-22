@@ -147,15 +147,17 @@ open class Person {
 
   fileprivate var _job : Job? = nil
   open var job : Job? {
-    get { }
+    get { return _job }
     set(value) {
+        _job = value
     }
   }
   
   fileprivate var _spouse : Person? = nil
   open var spouse : Person? {
-    get { }
+    get { return _spouse }
     set(value) {
+        _spouse = value
     }
   }
   
