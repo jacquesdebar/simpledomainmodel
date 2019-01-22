@@ -28,6 +28,67 @@ public struct Money {
   public var currency : String
   
   public func convert(_ to: String) -> Money {
+    switch currency {
+    case "USD":
+        switch to {
+        case "USD":
+            return self
+        case "GBP":
+            return Money(amount: Int(Double(self.amount)/2), currency: "GBP")
+        case "EUR":
+            return Money(amount: Int(Double(self.amount)*1.5), currency: "EUR")
+        case "CAN":
+            return Money(amount: Int(Double(self.amount)*1.25), currency: "CAN")
+        default:
+            print("invalid currency")
+            return self
+        }
+    case "GBP":
+        switch to {
+        case "USD":
+            return Money(amount: Int(Double(self.amount)*2), currency: "GBP")
+        case "GBP":
+            return self
+        case "EUR":
+            return Money(amount: Int(Double(self.amount)*3), currency: "EUR")
+        case "CAN":
+            return Money(amount: Int(Double(self.amount)*2.5), currency: "CAN")
+        default:
+            print("invalid currency")
+            return self
+        }
+    case "EUR":
+        switch to {
+        case "USD":
+            return Money(amount: Int(Double(self.amount)/1.5), currency: "EUR")
+        case "GBP":
+            return Money(amount: Int(Double(self.amount)/3), currency: "GBP")
+        case "EUR":
+            return self
+        case "CAN":
+            return Money(amount: Int(Double(self.amount)/1.2), currency: "CAN")
+        default:
+            print("invalid currency")
+            return self
+        }
+    case "CAN":
+        switch to {
+        case "USD":
+            return Money(amount: Int(Double(self.amount)/1.25), currency: "CAN")
+        case "GBP":
+            return Money(amount: Int(Double(self.amount)/2.5), currency: "GBP")
+        case "EUR":
+            return Money(amount: Int(Double(self.amount)*1.2), currency: "EUR")
+        case "CAN":
+            return self
+        default:
+            print("invalid currency")
+            return self
+        }
+    default:
+        print("invalid currency")
+        return self
+    }
   }
   
   public func add(_ to: Money) -> Money {
