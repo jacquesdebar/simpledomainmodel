@@ -166,6 +166,7 @@ open class Person {
   }
   
   open func toString() -> String {
+    return "[Person: firstName: \(self.firstName) lastName: \(self.lastName) age: \(self.age) job: \(self.job) spouse: \(self.spouse)]"
   }
 }
 
