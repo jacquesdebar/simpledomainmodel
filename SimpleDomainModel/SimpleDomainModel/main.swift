@@ -214,7 +214,9 @@ open class Family {
   open func householdIncome() -> Int {
     var total : Int = 0
     for member in members {
-        
+        if (member.job != nil) {
+            total += member.job!.calculateIncome(2000)
+        }
     }
     return total
   }
