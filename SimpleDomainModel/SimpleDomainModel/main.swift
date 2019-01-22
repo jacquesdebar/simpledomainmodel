@@ -119,11 +119,21 @@ open class Job {
   }
   
   open func calculateIncome(_ hours: Int) -> Int {
-    
+    switch self.type {
+    case .Salary(let year):
+        return year
+    case .Hourly(let hour):
+        return Int(round(hour*2000))
+    }
   }
   
   open func raise(_ amt : Double) {
-    
+    switch self.type {
+    case .Salary(let year):
+        self.type = JobType.Salary(Int(round(Double(year)*amt)))
+    case .Hourly(let hour):
+        self.type = JobType.Hourly(hour*amt)
+    }
   }
 }
 
