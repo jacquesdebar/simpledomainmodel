@@ -92,6 +92,8 @@ public struct Money {
   }
   
   public func add(_ to: Money) -> Money {
+    let rightCurrency = self.convert(to.currency)
+    return Money(amount: (rightCurrency.amount+to.amount), currency: to.currency)
   }
   public func subtract(_ from: Money) -> Money {
   }
