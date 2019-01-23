@@ -241,7 +241,9 @@ open class Person {
   open var job : Job? {
     get { return _job }
     set(value) {
+      if (self.age >= 16) {
         _job = value
+      }
     }
   }
   
@@ -249,7 +251,9 @@ open class Person {
   open var spouse : Person? {
     get { return _spouse }
     set(value) {
+      if (self.age >= 18) {
         _spouse = value
+      }
     }
   }
   
@@ -260,16 +264,18 @@ open class Person {
   }
   
   open func toString() -> String {
-    var jobString : String = "none"
+    var jobString : String = "nil"
     if self.job != nil {
         jobString = "\(self.job?.type)"
     }
-    var spouseString : String = "none"
+    var spouseString : String = "nil"
     if self.spouse != nil {
         spouseString = "\(self.spouse?.firstName)"
     }
     
-    return "[Person: firstName: \(self.firstName) lastName: \(self.lastName) age: \(self.age) job: \(jobString) spouse: \(spouseString)]"
+    let state = "[Person: firstName:\(self.firstName) lastName:\(self.lastName) age:\(self.age) job:\(jobString) spouse:\(spouseString)]"
+    
+    return state
   }
 }
 
