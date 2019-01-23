@@ -13,6 +13,7 @@ import SimpleDomainModel
 //////////////////
 // MoneyTests
 //
+
 class MoneyTests: XCTestCase {
   
   let tenUSD = Money(amount: 10, currency: "USD")

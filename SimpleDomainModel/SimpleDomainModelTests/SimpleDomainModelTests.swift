@@ -13,6 +13,8 @@ import SimpleDomainModel
 //////////////////
 // Basic "test that the tests are working" tests
 //
+
+/*
 class SimpleDomainModelTests: XCTestCase {
   
   override func setUp() {
@@ -45,3 +47,4 @@ class SimpleDomainModelTests: XCTestCase {
   
 }
 
+*/

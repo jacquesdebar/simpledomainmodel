@@ -27,7 +27,8 @@ public struct Money {
   public var amount : Int
   public var currency : String
   
-  public func convert(_ to: String) -> Money {
+  /*
+  public func convertA(_ to: String) -> Money {
     switch currency {
     case "USD":
         switch to {
@@ -90,6 +91,95 @@ public struct Money {
         return self
     }
   }
+  */
+  
+  
+  public func convert(_ to: String) -> Money {
+    
+    var after : Money = Money(amount: 0, currency: to)
+    
+    switch currency {
+    case "USD":
+      switch to {
+      case "USD":
+        after.amount = self.amount
+      case "GBP":
+        after.amount = Int(Double(self.amount)/2)
+      case "EUR":
+        after.amount = Int(Double(self.amount)*1.5)
+      case "CAN":
+        after.amount = Int(Double(self.amount)*1.25)
+      default:
+        print("invalid currency")
+        return self
+      }
+    case "GBP":
+      switch to {
+      case "USD":
+        after.amount = Int(Double(self.amount)*2)
+      case "GBP":
+        after.amount = self.amount
+      case "EUR":
+        after.amount = Int(Double(self.amount)*3)
+      case "CAN":
+        after.amount = Int(Double(self.amount)*2.5)
+      default:
+        print("invalid currency")
+        return self
+      }
+    case "EUR":
+      switch to {
+      case "USD":
+        after.amount = Int(Double(self.amount)/1.5)
+      case "GBP":
+        after.amount = Int(Double(self.amount)/3)
+      case "EUR":
+        after.amount = self.amount
+      case "CAN":
+        after.amount = Int(Double(self.amount)/1.2)
+      default:
+        print("invalid currency")
+        return self
+      }
+    case "CAN":
+      switch to {
+      case "USD":
+        after.amount = Int(Double(self.amount)/1.25)
+      case "GBP":
+        after.amount = Int(Double(self.amount)/2.5)
+      case "EUR":
+        after.amount = Int(Double(self.amount)*1.2)
+      case "CAN":
+        after.amount = self.amount
+      default:
+        print("invalid currency")
+        return self
+      }
+    default:
+      print("invalid currency")
+      return self
+    }
+    return after
+  }
+  
+  /*
+   case "EUR":
+   switch to {
+   case "USD":
+   return Money(amount: Int(Double(self.amount)/1.5), currency: "EUR")
+   case "GBP":
+   return Money(amount: Int(Double(self.amount)/3), currency: "GBP")
+   case "EUR":
+   return self
+   case "CAN":
+   return Money(amount: Int(Double(self.amount)/1.2), currency: "CAN")
+   default:
+   print("invalid currency")
+   return self
+   }
+   
+   
+   */
   
   public func add(_ to: Money) -> Money {
     let rightCurrency = self.convert(to.currency)
@@ -119,20 +209,22 @@ open class Job {
   }
   
   open func calculateIncome(_ hours: Int) -> Int {
+    var annual : Int = 0
     switch self.type {
     case .Salary(let year):
-        return year
+      annual = year
     case .Hourly(let hour):
-        return Int(round(hour*2000))
+      annual = Int(round(hour*Double(hours)))
     }
+    return annual
   }
   
   open func raise(_ amt : Double) {
     switch self.type {
     case .Salary(let year):
-        self.type = JobType.Salary(Int(round(Double(year)*amt)))
+        self.type = JobType.Salary(Int(round(Double(year)+amt)))
     case .Hourly(let hour):
-        self.type = JobType.Hourly(hour*amt)
+        self.type = JobType.Hourly(hour+amt)
     }
   }
 }
